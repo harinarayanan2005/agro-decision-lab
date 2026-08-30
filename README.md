@@ -57,62 +57,6 @@ An enterprise-grade **Agricultural Decision Intelligence Platform** designed to 
 
 ---
 
-## 🚀 How to Run the Project (Step-by-Step)
-
-### Prerequisites
-Make sure you have the following installed on your computer:
-* **Java Development Kit (JDK 17 or higher)**
-* **Node.js (v18 or higher)** & `npm`
-* **Python (v3.9 or higher)**
-
----
-
-### Option 1: ⚡ 1-Click Automated Launcher (Windows)
-
-1. Open File Explorer and go to the project directory:
-   ```text
-   D:\FINAL PROJECT\Agri Index\Agri-Intelligence-System (3)\Agri-Intelligence-System
-   ```
-2. Double-click **`start-agri-system.bat`** (or run `.\run-all.ps1` in PowerShell).
-3. The script will automatically:
-   * Setup/verify the Python virtual environment (`venv`).
-   * Start the Spring Boot backend on **port 8081**.
-   * Start the React dev server on **port 5173**.
-   * Open **`http://localhost:5173`** in your default browser!
-
----
-
-### Option 2: 🖥️ Manual Startup (Two Terminals)
-
-#### Terminal 1: Start Backend (Spring Boot)
-```cmd
-D:
-cd "D:\FINAL PROJECT\Agri Index\Agri-Intelligence-System (3)\Agri-Intelligence-System\backend"
-python -m venv venv
-venv\Scripts\activate
-pip install numpy pandas scikit-learn joblib
-mvnw.cmd spring-boot:run
-```
-*(In PowerShell: run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`, then `.\venv\Scripts\Activate.ps1`, then `.\mvnw.cmd spring-boot:run`)*
-
-Wait until the terminal displays:
-```text
-Agro DecisionLab AI Server Started - http://localhost:8081
-```
-
-#### Terminal 2: Start Frontend (React + Vite)
-```cmd
-D:
-cd "D:\FINAL PROJECT\Agri Index\Agri-Intelligence-System (3)\Agri-Intelligence-System\agri-decision-lab"
-npm.cmd run dev
-```
-
-#### Open in Your Web Browser:
-Navigate to:
-👉 **`http://localhost:5173`** *(or `http://127.0.0.1:5173`)*
-
----
-
 ## 📡 Backend API Endpoints
 
 | Endpoint | Method | Description |
@@ -124,14 +68,6 @@ Navigate to:
 | `/api/supply-chain/add` | `POST` | Mines and appends a new block to the provenance ledger |
 | `/api/supply-chain/trace/{batchId}` | `GET` | Retrieves full immutable lifecycle history for a batch |
 | `/api/agri-ai/ask` | `POST` | Queries generative agronomy assistant with fallback engine |
-
----
-
-## 👤 Author & Maintainer
-
-* **Author:** Harinarayanan N
-* **GitHub:** [@harinarayanan2005](https://github.com/harinarayanan2005)
-* **Repository:** [agro-decision-lab](https://github.com/harinarayanan2005/agro-decision-lab)
 
 ---
 
