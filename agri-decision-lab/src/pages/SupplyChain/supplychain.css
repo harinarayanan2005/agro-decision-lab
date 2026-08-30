@@ -1,0 +1,293 @@
+/* Modern Supply Chain & Blockchain Styles */
+
+.supply-root {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.supply-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 1.5rem;
+}
+
+.supply-card {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Freight Estimator */
+.freight-estimate-box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(6, 182, 212, 0.05) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.freight-stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stat-lbl {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.stat-huge {
+  font-size: 1.45rem;
+  font-weight: 800;
+  font-family: var(--font-display);
+  color: var(--text-emerald);
+}
+
+.stat-val {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.text-emerald {
+  color: var(--text-emerald);
+}
+
+.text-cyan {
+  color: var(--accent-cyan);
+}
+
+.nearest-hubs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.hub-header {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.hubs-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.hub-pill {
+  font-size: 0.78rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-full);
+  color: var(--text-primary);
+}
+
+/* Trace Bar */
+.trace-control-card {
+  padding: 1.25rem 1.5rem;
+}
+
+.trace-search-bar {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.trace-input {
+  flex: 1;
+  padding: 0.75rem 1.2rem;
+  background: rgba(10, 18, 30, 0.85);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.trace-input:focus {
+  border-color: var(--border-focus);
+}
+
+/* Analytics */
+.chain-analytics {
+  padding: 1.25rem 1.5rem;
+}
+
+.analytics-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.metric-chip {
+  display: flex;
+  flex-direction: column;
+  padding: 0.85rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.metric-chip .lbl {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.metric-chip .val {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 0.2rem;
+}
+
+/* Blockchain Flow Explorer */
+.ledger-view {
+  padding: 1.5rem;
+}
+
+.blockchain-flow {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.block-node {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.block-node:hover {
+  transform: translateY(-2px);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.block-node-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.block-num {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.block-type-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+}
+
+.type-harvested {
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--accent-emerald-light);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.type-stored {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fcd34d;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.type-transported {
+  background: rgba(6, 182, 212, 0.2);
+  color: #a5f3fc;
+  border: 1px solid rgba(6, 182, 212, 0.4);
+}
+
+.type-sold {
+  background: rgba(99, 102, 241, 0.2);
+  color: #c7d2fe;
+  border: 1px solid rgba(99, 102, 241, 0.4);
+}
+
+.block-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.82rem;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.detail-row span {
+  color: var(--text-muted);
+}
+
+.detail-row b {
+  color: #cbd5e1;
+}
+
+.hash-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 0.45rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+}
+
+.hash-str {
+  color: var(--text-muted);
+  font-family: monospace;
+}
+
+.copy-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.copy-btn:hover {
+  color: var(--accent-emerald-light);
+}
+
+.prev-hash-box {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-family: monospace;
+}
+
+.pow-status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-emerald);
+}
+
+@media (max-width: 1024px) {
+  .supply-grid,
+  .freight-estimate-box,
+  .analytics-metrics-row {
+    grid-template-columns: 1fr;
+  }
+}
