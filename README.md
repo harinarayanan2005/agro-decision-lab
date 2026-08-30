@@ -57,19 +57,5 @@ An enterprise-grade **Agricultural Decision Intelligence Platform** designed to 
 
 ---
 
-## 📡 Backend API Endpoints
-
-| Endpoint | Method | Description |
-| :--- | :---: | :--- |
-| `/api/crop-planner/calculate` | `POST` | Calculates optimal crop ranking, yield, and profit estimates |
-| `/api/crop-planner/health` | `GET` | Health check probe for ML Crop Planner service |
-| `/api/fertilizer/predict` | `POST` | Generates soil nutrient balancing & fertilizer schedule |
-| `/api/disease/predict` | `POST` | Analyzes uploaded leaf image and returns pathology report |
-| `/api/supply-chain/add` | `POST` | Mines and appends a new block to the provenance ledger |
-| `/api/supply-chain/trace/{batchId}` | `GET` | Retrieves full immutable lifecycle history for a batch |
-| `/api/agri-ai/ask` | `POST` | Queries generative agronomy assistant with fallback engine |
-
----
-
 ## 📄 License
 This project is open-source and available under the [MIT License](LICENSE).
