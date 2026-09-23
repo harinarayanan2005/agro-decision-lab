@@ -11,9 +11,6 @@ public class BatchChain {
     public BatchChain() {
     }
 
-    public BatchChain() {
-    }
-
     public BatchChain(String batchId) {
         this.batchId = batchId;
     }

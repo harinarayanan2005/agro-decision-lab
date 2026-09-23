@@ -1,1 +1,1 @@
-{"crop":"Rice","soil_type":"Loamy","season":"Kharif","irrigation":"Canal","ph":6.5,"nitrogen":131,"phosphorus":86,"potassium":38,"expected_yield":4.5,"budget":35000,"market_price":22000,"climate_score":80,"risk_score":20}
+{"expected_yield":4.5,"potassium":38.0,"climate_score":80.0,"risk_score":20.0,"nitrogen":90.0,"soil_type":"Loamy","irrigation":"Canal","ph":6.5,"season":"Kharif","market_price":22000.0,"crop":"Rice","phosphorus":42.0,"budget":35000.0}

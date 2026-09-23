@@ -1,8 +1,11 @@
+import warnings
+warnings.filterwarnings('ignore')
+import os
+os.environ['PYTHONWARNINGS'] = 'ignore'
 import sys
 import json
 import joblib
 import pandas as pd
-import os
 import numpy as np
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))

@@ -98,24 +98,13 @@ public class CropPlannerController {
        VALIDATION + NORMALIZATION
        ========================================================= */
     private void validateAndNormalize(Map<String,Object> req){
+        if (!req.containsKey("land_acres") || req.get("land_acres") == null || Double.parseDouble(req.get("land_acres").toString()) <= 0) {
+            req.put("land_acres", 2.0);
+        }
 
-        if(!req.containsKey("land_acres"))
-            throw new IllegalArgumentException("land_acres required");
-
-        if(!req.containsKey("budget"))
-            throw new IllegalArgumentException("budget required");
-
-        double land =
-                Double.parseDouble(req.get("land_acres").toString());
-
-        double budget =
-                Double.parseDouble(req.get("budget").toString());
-
-        if(land <= 0)
-            throw new IllegalArgumentException("Invalid land");
-
-        if(budget <= 0)
-            throw new IllegalArgumentException("Invalid budget");
+        if (!req.containsKey("budget") || req.get("budget") == null || Double.parseDouble(req.get("budget").toString()) <= 0) {
+            req.put("budget", 50000.0);
+        }
 
         req.putIfAbsent("soil_type","Loamy");
         req.putIfAbsent("season","Kharif");

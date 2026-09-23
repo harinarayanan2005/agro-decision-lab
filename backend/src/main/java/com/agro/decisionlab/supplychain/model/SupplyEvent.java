@@ -7,13 +7,6 @@ public class SupplyEvent {
     private double quantity;
     private String location;
 
-public class SupplyEvent {
-
-    private String type;
-    private String actor;
-    private double quantity;
-    private String location;
-
     public SupplyEvent() {
     }
 

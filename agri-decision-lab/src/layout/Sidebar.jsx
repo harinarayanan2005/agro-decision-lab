@@ -2,12 +2,14 @@ import { NavLink } from "react-router-dom";
 
 export default function Sidebar() {
   const navItems = [
-    { to: "/", label: "Crop Planner", icon: "🌾", badge: "AI Core" },
-    { to: "/analytics", label: "Market Analytics", icon: "📊" },
-    { to: "/disease-ai", label: "Disease AI", icon: "🍃", badge: "Scanner" },
-    { to: "/fertilizer-ai", label: "Fertilizer Advisory", icon: "🧪" },
-    { to: "/supply-chain", label: "Supply Chain", icon: "🔗" },
-    { to: "/agri-ai", label: "Agri AI Assistant", icon: "🤖", badge: "Live" },
+    { to: "/", label: "Overview & Bulletins", icon: "🏠" },
+    { to: "/crop-planner", label: "Field & Crop Planner", icon: "🌾" },
+    { to: "/agro-gis", label: "Agro-Climatic GIS Map", icon: "🗺️" },
+    { to: "/analytics", label: "Mandi Price Intelligence", icon: "📊" },
+    { to: "/disease-ai", label: "Plant Health & Pathology", icon: "🍃" },
+    { to: "/fertilizer-ai", label: "Soil Nutrient Advisory", icon: "🧪" },
+    { to: "/supply-chain", label: "Harvest & Mandi Dispatch", icon: "📦" },
+    { to: "/agri-ai", label: "Agronomist Advisory Desk", icon: "👨‍🌾" },
   ];
 
   return (
@@ -18,14 +20,14 @@ export default function Sidebar() {
             <span>🌱</span>
           </div>
           <div className="logo-text-group">
-            <h1 className="logo-text">AgriAI</h1>
-            <span className="logo-subtext">Decision Intelligence</span>
+            <h1 className="logo-text">Agro DecisionLab</h1>
+            <span className="logo-subtext">Agricultural Decision Intelligence</span>
           </div>
         </div>
       </div>
 
       <div className="sidebar-nav">
-        <div className="nav-section-label">AI Decision Suite</div>
+        <div className="nav-section-label">Decision Modules</div>
         {navItems.map((item) => (
           <NavLink
             key={item.to}
@@ -46,11 +48,11 @@ export default function Sidebar() {
         <div className="system-status-card">
           <div className="status-left">
             <div className="status-pulse" />
-            <span>ML Engine Active</span>
+            <span>TN Agro-Climatic Zone</span>
           </div>
-          <span className="ai-engine-tag">v2.4</span>
+          <span className="ai-engine-tag">Samba 2026</span>
         </div>
       </div>
     </aside>
   );
-}
+}

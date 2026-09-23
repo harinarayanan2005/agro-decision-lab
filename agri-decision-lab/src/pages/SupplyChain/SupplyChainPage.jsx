@@ -49,7 +49,7 @@ export default function SupplyChainPage() {
       const blockData = await res.json();
       alert(`Block #${blockData.index} successfully mined and appended to the ledger! 🔗`);
       traceBatch(form.batchId);
-    } catch (err) {
+    } catch {
       // If backend is in mock/dev mode, append mock block
       const newBlock = {
         index: chain.length + 1,
@@ -93,7 +93,7 @@ export default function SupplyChainPage() {
         const analyticsData = await res2.json();
         setAnalytics(analyticsData);
       }
-    } catch (err) {
+    } catch {
       // Fallback demo chain
       setChain([
         {
@@ -156,14 +156,14 @@ export default function SupplyChainPage() {
       {/* Header */}
       <div className="page-header-box">
         <div className="page-title-group">
-          <h1>🔗 Agro Blockchain Traceability & Supply Chain</h1>
-          <p>Cryptographically verified farm-to-fork batch provenance & mandi transport network</p>
+          <h1>📦 Harvest-to-Mandi Consignment & Traceability Ledger</h1>
+          <p>Verified batch dispatch provenance, cold-storage transit log, and APMC Mandi freight tracking</p>
         </div>
       </div>
 
       {/* Preset Batches */}
       <div className="preset-bar">
-        <span className="preset-label">⚡ Trace Preset Batches:</span>
+        <span className="preset-label">📦 Active Batch Consignments:</span>
         {sampleBatches.map((b, i) => (
           <button
             key={i}
@@ -182,8 +182,8 @@ export default function SupplyChainPage() {
         {/* Add Supply Event Block */}
         <div className="glass-card supply-card">
           <div className="panel-header">
-            <h3>⛏️ Append Supply Event (Mine Block)</h3>
-            <span className="badge-emerald">PoW Consensus</span>
+            <h3>📝 Record Consignment Event</h3>
+            <span className="badge-emerald">Verified Ledger</span>
           </div>
 
           <div className="form-item">
@@ -222,29 +222,29 @@ export default function SupplyChainPage() {
           </div>
 
           <div className="form-item">
-            <label>Authorized Actor / Organization</label>
+            <label>Responsible Entity / Stakeholder</label>
             <input
               className="custom-select"
               name="actor"
               value={form.actor}
-              placeholder="e.g. Thanjavur Agro FPC"
+              placeholder="e.g. Cauvery FPC Ltd"
               onChange={handleChange}
             />
           </div>
 
           <div className="form-item">
-            <label>Geographic Node / Location</label>
+            <label>Geo Location / Mandi Terminal</label>
             <input
               className="custom-select"
               name="location"
               value={form.location}
-              placeholder="e.g. Kumbakonam Hub, TN"
+              placeholder="e.g. Thanjavur APMC Market"
               onChange={handleChange}
             />
           </div>
 
-          <button className="btn-primary full-width" onClick={addBlock} disabled={loading}>
-            {loading ? "Mining & Signing Block..." : "🚀 Mine Cryptographic Block"}
+          <button className="btn-primary full-width" onClick={addBlock} disabled={loading} style={{ marginTop: "0.5rem" }}>
+            {loading ? "Recording Consignment Block..." : "📦 Register Consignment Event"}
           </button>
         </div>
 

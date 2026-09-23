@@ -1,7 +1,10 @@
+import warnings
+warnings.filterwarnings('ignore')
+import os
+os.environ['PYTHONWARNINGS'] = 'ignore'
 import joblib
 import pandas as pd
 import sys
-import os
 import numpy as np
 
 # =========================================================

@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { predictFertilizer } from "../../api/fertilizerApi";
 import {
   RadarChart,
@@ -38,9 +38,9 @@ export default function FertilizerPage() {
   const [error, setError] = useState(null);
 
   const soilPresets = [
-    { label: "🌱 Balanced Loam", n: 90, p: 45, k: 45, ph: 6.8, crop: "Rice" },
-    { label: "⚡ Nitrogen Deficient", n: 35, p: 50, k: 40, ph: 6.2, crop: "Wheat" },
-    { label: "🧱 Low Phosphorus Clay", n: 80, p: 18, k: 60, ph: 7.4, crop: "Cotton" },
+    { label: "🌱 Balanced Loam (Cauvery Paddy)", n: 90, p: 45, k: 45, ph: 6.8, crop: "Rice" },
+    { label: "🌾 Nitrogen Deficient Silt", n: 35, p: 50, k: 40, ph: 6.2, crop: "Wheat" },
+    { label: "🧱 Low Phosphorus Alluvium", n: 80, p: 18, k: 60, ph: 7.4, crop: "Cotton" },
   ];
 
   const applySoilPreset = (preset) => {
@@ -61,8 +61,8 @@ export default function FertilizerPage() {
     try {
       const res = await predictFertilizer(input);
       setResult(res);
-    } catch (e) {
-      setError("AI Fertilizer service failed. Verify backend port 8081 is active.");
+    } catch {
+      setError("Fertilizer advisory service unavailable. Verify backend port 8081 is active.");
     } finally {
       setLoading(false);
     }
@@ -92,12 +92,12 @@ export default function FertilizerPage() {
       {/* Header */}
       <div className="page-header-box">
         <div className="page-title-group">
-          <h1>🧪 AI Precision Fertilizer Advisory</h1>
-          <p>Machine-learning driven soil nutrient diagnostic & precision dosage optimization</p>
+          <h1>🧪 Soil Nutrient Balancing & Agronomic Advisory</h1>
+          <p>Field soil chemistry diagnostic evaluating Nitrogen, Phosphorus, Potassium, pH, and crop-specific dosage schedules</p>
         </div>
         <div className="header-actions">
           <button className="btn-primary" onClick={runAI} disabled={loading}>
-            {loading ? "Diagnosing Soil Profile..." : "⚡ Compute Fertilizer Prescription"}
+            {loading ? "Diagnosing Soil Profile..." : "🌾 Prescribe Fertilizer Formulation"}
           </button>
         </div>
       </div>
@@ -333,12 +333,12 @@ export default function FertilizerPage() {
             <div style={{ height: 220, width: "100%" }}>
               <ResponsiveContainer>
                 <BarChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
-                  <XAxis dataKey="nutrient" stroke="#94a3b8" />
-                  <YAxis stroke="#94a3b8" />
-                  <Tooltip contentStyle={{ backgroundColor: "#0d1726", border: "1px solid rgba(16,185,129,0.3)", borderRadius: 10 }} />
-                  <Bar dataKey="actual" name="Current Soil Level" fill="#10b981" radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="optimal" name="Benchmark Target" fill="#06b6d4" radius={[4, 4, 0, 0]} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(244, 241, 234, 0.07)" />
+                  <XAxis dataKey="nutrient" stroke="#859882" tick={{ fill: "#cad5c7", fontSize: 12 }} />
+                  <YAxis stroke="#859882" tick={{ fill: "#cad5c7", fontSize: 12 }} />
+                  <Tooltip contentStyle={{ backgroundColor: "#15241d", border: "1px solid rgba(82, 183, 136, 0.4)", borderRadius: 8, color: "#f5f2eb" }} />
+                  <Bar dataKey="actual" name="Current Soil Level" fill="#40916c" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="optimal" name="Benchmark Target" fill="#d4973b" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -349,11 +349,11 @@ export default function FertilizerPage() {
             <div style={{ height: 220, width: "100%" }}>
               <ResponsiveContainer>
                 <RadarChart data={radarData}>
-                  <PolarGrid stroke="rgba(255,255,255,0.08)" />
-                  <PolarAngleAxis dataKey="subject" stroke="#94a3b8" tick={{ fill: "#94a3b8", fontSize: 11 }} />
-                  <PolarRadiusAxis stroke="rgba(255,255,255,0.2)" />
-                  <Radar name="Soil Level" dataKey="value" stroke="#34d399" fill="#10b981" fillOpacity={0.4} />
-                  <Tooltip contentStyle={{ backgroundColor: "#0d1726", border: "1px solid rgba(16,185,129,0.3)", borderRadius: 10 }} />
+                  <PolarGrid stroke="rgba(244, 241, 234, 0.08)" />
+                  <PolarAngleAxis dataKey="subject" stroke="#859882" tick={{ fill: "#cad5c7", fontSize: 11 }} />
+                  <PolarRadiusAxis stroke="rgba(244, 241, 234, 0.15)" />
+                  <Radar name="Soil Level" dataKey="value" stroke="#52b788" fill="#40916c" fillOpacity={0.35} />
+                  <Tooltip contentStyle={{ backgroundColor: "#15241d", border: "1px solid rgba(82, 183, 136, 0.4)", borderRadius: 8, color: "#f5f2eb" }} />
                 </RadarChart>
               </ResponsiveContainer>
             </div>

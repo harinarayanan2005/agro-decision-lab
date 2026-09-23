@@ -2,7 +2,6 @@ package com.agro.decisionlab.supplychain.repository;
 
 import com.agro.decisionlab.supplychain.model.BatchChain;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.File;
 import java.util.HashMap;
@@ -12,7 +11,7 @@ public class BlockchainRepository {
 
     private static final String DB_FILE = "data/blockchain_db.json";
 
-    private final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
+    private final ObjectMapper mapper = new ObjectMapper().findAndRegisterModules();
 
     public Map<String, BatchChain> load() {
 

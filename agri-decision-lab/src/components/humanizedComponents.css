@@ -1,0 +1,1077 @@
+/* =========================================================
+   HUMANIZED AGRICULTURAL COMPONENTS STYLING
+   Tamil Pattam Seasonal Calendar & Knapsack Dilution Calculator
+   ========================================================= */
+
+/* =========================================================
+   1. TAMIL PATTAM AGRO-CALENDAR BAR
+   ========================================================= */
+
+.pattam-clean-bar {
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 1.15rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.25rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.pattam-clean-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-forest) 0%, var(--accent-leaf) 50%, var(--accent-amber) 100%);
+}
+
+.pattam-clean-bar.pattam-compact {
+  padding: 0.85rem 1.15rem;
+  gap: 0.7rem;
+}
+
+.pattam-clean-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.85rem;
+}
+
+.pattam-title-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.86rem;
+}
+
+.pattam-main-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.pattam-active-name {
+  font-weight: 700;
+  color: var(--accent-leaf);
+}
+
+.pattam-active-tamil {
+  color: var(--text-gold);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.pattam-active-status-badge {
+  background: rgba(82, 183, 136, 0.15);
+  border: 1px solid rgba(82, 183, 136, 0.35);
+  color: var(--accent-leaf);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.pattam-tabs-clean {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.pattam-pill-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-full);
+  padding: 0.4rem 0.85rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pattam-pill-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-focus);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.pattam-pill-btn.active {
+  background: linear-gradient(135deg, rgba(45, 106, 79, 0.45) 0%, rgba(27, 67, 50, 0.7) 100%);
+  border-color: var(--accent-leaf);
+  color: var(--text-primary);
+  box-shadow: 0 2px 10px rgba(45, 106, 79, 0.3);
+}
+
+.pattam-pill-btn .pill-sub {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  opacity: 0.85;
+}
+
+.pattam-pill-btn.active .pill-sub {
+  color: var(--accent-emerald-light);
+  opacity: 1;
+  font-weight: 700;
+}
+
+.pattam-apply-btn {
+  white-space: nowrap;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.42rem 0.9rem;
+  border-radius: var(--radius-md);
+  border-color: var(--accent-leaf);
+  color: var(--accent-leaf);
+}
+
+.pattam-clean-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+}
+
+.pattam-crops-label {
+  font-weight: 700;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.pattam-crops-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.crop-tag-chip-clean {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  padding: 0.22rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.76rem;
+  font-weight: 500;
+}
+
+.pattam-protocol-hint {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.pattam-calendar-wrapper {
+  background: var(--grad-bulletin);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  margin-bottom: 1.2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.pattam-calendar-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #2d6a4f 0%, #d4973b 50%, #52b788 100%);
+}
+
+.pattam-calendar-wrapper.compact {
+  padding: 0.9rem 1.2rem;
+}
+
+.pattam-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  border-bottom: 1px solid rgba(244, 241, 234, 0.08);
+  padding-bottom: 0.8rem;
+}
+
+.pattam-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.pattam-kalam-badge {
+  background: rgba(212, 151, 59, 0.15);
+  border: 1px solid rgba(212, 151, 59, 0.4);
+  color: var(--harvest-gold);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.35rem 0.7rem;
+  border-radius: 20px;
+  letter-spacing: 0.02em;
+}
+
+.pattam-title-group h3 {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.pattam-subtitle {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin: 0.15rem 0 0 0;
+}
+
+.pattam-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.current-active-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(45, 106, 79, 0.3);
+  border: 1px solid var(--forest-light);
+  color: #74c69d;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 16px;
+}
+
+.btn-text-toggle {
+  background: transparent;
+  border: none;
+  color: var(--harvest-gold);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+}
+
+.btn-text-toggle:hover {
+  text-decoration: underline;
+}
+
+/* Tabs Row */
+.pattam-tabs-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .pattam-tabs-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.pattam-tab-btn {
+  background: rgba(18, 30, 24, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 0.65rem 0.6rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.pattam-tab-btn:hover {
+  background: rgba(30, 52, 40, 0.6);
+  border-color: rgba(82, 183, 136, 0.4);
+}
+
+.pattam-tab-btn.active {
+  background: rgba(45, 106, 79, 0.45);
+  border: 1.5px solid var(--harvest-gold);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.tab-tamil-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #f4f1ea;
+}
+
+.tab-english-name {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.pattam-tab-btn.active .tab-english-name {
+  color: #a7d7b8;
+}
+
+.live-now-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: #52b788;
+  color: #0c1511;
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 0.1rem 0.35rem;
+  border-radius: 8px;
+  text-transform: uppercase;
+}
+
+/* Detailed Card */
+.pattam-detail-card {
+  background: rgba(12, 20, 16, 0.6);
+  border: 1px solid rgba(82, 183, 136, 0.25);
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.pattam-proverb-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  background: rgba(212, 151, 59, 0.12);
+  border-left: 4px solid var(--harvest-gold);
+  padding: 0.6rem 0.85rem;
+  border-radius: 0 8px 8px 0;
+}
+
+.proverb-icon {
+  font-size: 1.1rem;
+}
+
+.proverb-text {
+  font-size: 0.85rem;
+  color: #f4f1ea;
+  font-style: italic;
+  flex: 1;
+}
+
+.pattam-period-tag {
+  background: rgba(10, 18, 14, 0.6);
+  border: 1px solid rgba(212, 151, 59, 0.3);
+  color: var(--harvest-gold);
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+}
+
+.pattam-content-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 1.1rem;
+}
+
+@media (max-width: 800px) {
+  .pattam-content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pattam-desc-text {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 0.7rem;
+}
+
+.pattam-info-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.65rem;
+}
+
+.info-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.pattam-crop-pills,
+.pattam-zones-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.crop-pill-item {
+  background: rgba(45, 106, 79, 0.3);
+  border: 1px solid rgba(82, 183, 136, 0.3);
+  color: #e5ede3;
+  font-size: 0.76rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 12px;
+}
+
+.zone-pill-item {
+  background: rgba(18, 30, 24, 0.7);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.74rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+}
+
+.advisory-memo-box {
+  background: rgba(22, 38, 30, 0.6);
+  border: 1px solid rgba(82, 183, 136, 0.3);
+  border-radius: 8px;
+  padding: 0.75rem 0.9rem;
+  margin-bottom: 0.65rem;
+}
+
+.memo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #74c69d;
+}
+
+.memo-stamp {
+  border: 1px dashed var(--harvest-gold);
+  color: var(--harvest-gold);
+  font-size: 0.65rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+.memo-body {
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.water-protocol-box {
+  background: rgba(10, 18, 14, 0.5);
+  border: 1px solid rgba(82, 183, 136, 0.2);
+  border-radius: 8px;
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.75rem;
+}
+
+.water-icon {
+  font-size: 1.3rem;
+}
+
+.water-lbl {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.water-val {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #a7d7b8;
+}
+
+.pattam-action-btn {
+  font-size: 0.85rem;
+  padding: 0.6rem 1rem;
+}
+
+/* =========================================================
+   2. KNAPSACK SPRAYER & DILUTION CALCULATOR MODAL
+   ========================================================= */
+
+/* =========================================================
+   2. KNAPSACK SPRAYER & DILUTION CALCULATOR MODAL
+   ========================================================= */
+
+.modal-backdrop-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(4, 9, 6, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  animation: modalOverlayFade 0.2s ease-out forwards;
+}
+
+@keyframes modalOverlayFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.knapsack-modal-card {
+  background: var(--grad-modal);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 24px 64px -8px rgba(0, 0, 0, 0.9), 0 0 30px rgba(45, 106, 79, 0.25);
+  width: 100%;
+  max-width: 980px;
+  max-height: calc(100vh - 3rem);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.75rem 2rem;
+  margin: auto;
+  position: relative;
+  box-sizing: border-box;
+  animation: modalScaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalScaleIn {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-header-strip {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1rem;
+  gap: 1rem;
+}
+
+.modal-tag-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.35rem;
+}
+
+.modal-tool-tag {
+  background: rgba(212, 151, 59, 0.18);
+  border: 1px solid rgba(212, 151, 59, 0.4);
+  color: var(--harvest-gold);
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+}
+
+.modal-subtag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.modal-title-box h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  margin: 0;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.modal-tamil-heading {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.modal-title-box p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin: 0.25rem 0 0 0;
+}
+
+.modal-close-btn {
+  background: rgba(244, 241, 234, 0.06);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.modal-close-btn:hover {
+  background: rgba(200, 100, 70, 0.3);
+  color: #fff;
+  border-color: rgba(200, 100, 70, 0.5);
+  transform: scale(1.05);
+}
+
+.knapsack-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 1.6rem;
+  align-items: stretch;
+}
+
+.knapsack-inputs-col,
+.knapsack-results-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-subtitle {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--accent-emerald-light);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.9rem;
+  border-bottom: 1px solid rgba(244, 241, 234, 0.08);
+  padding-bottom: 0.4rem;
+}
+
+.form-group-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+.form-group-item label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.input-with-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: 0.4rem 0.8rem;
+}
+
+.number-field {
+  width: 85px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.6rem;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  outline: none;
+}
+
+.number-field:focus {
+  border-color: var(--accent-leaf);
+}
+
+.field-suffix {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.field-suffix strong {
+  color: var(--accent-amber-light);
+}
+
+.quick-acre-btns {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.quick-acre-chip {
+  background: rgba(22, 36, 29, 0.7);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.74rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.quick-acre-chip.active,
+.quick-acre-chip:hover {
+  background: var(--accent-forest);
+  color: #fff;
+  border-color: var(--accent-leaf);
+}
+
+/* Tank Size Choice Buttons */
+.tank-size-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+
+.tank-choice-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.6rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.25rem;
+  transition: all 0.2s ease;
+  min-height: 86px;
+  justify-content: center;
+}
+
+.tank-choice-btn:hover {
+  background: rgba(30, 52, 40, 0.7);
+  border-color: var(--border-focus);
+}
+
+.tank-choice-btn.active {
+  background: rgba(45, 106, 79, 0.45);
+  border-color: var(--accent-amber);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.tank-icon {
+  font-size: 1.35rem;
+}
+
+.tank-name {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.tank-desc {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* Recipes List */
+.recipes-list-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 0.35rem;
+}
+
+.recipe-select-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.7rem 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.recipe-select-card:hover {
+  background: rgba(30, 52, 40, 0.7);
+  border-color: rgba(82, 183, 136, 0.4);
+}
+
+.recipe-select-card.selected {
+  background: rgba(45, 106, 79, 0.35);
+  border: 1.5px solid var(--accent-amber);
+}
+
+.recipe-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.recipe-title {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.recipe-tamil-title {
+  font-size: 0.8rem;
+  color: var(--harvest-gold);
+}
+
+.recipe-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.74rem;
+  flex-wrap: wrap;
+}
+
+.recipe-cat-badge {
+  background: rgba(10, 18, 14, 0.6);
+  color: #74c69d;
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  font-size: 0.68rem;
+}
+
+.recipe-target {
+  color: var(--text-muted);
+}
+
+/* Right Column: Physical Field Pocket Card */
+.field-pocket-card {
+  background: var(--bg-surface);
+  border: 1px dashed var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.4);
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.memo-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(244, 241, 234, 0.1);
+  padding-bottom: 0.5rem;
+  gap: 0.5rem;
+}
+
+.memo-station-stamp {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--harvest-gold);
+  border: 1px solid var(--harvest-gold);
+  padding: 0.18rem 0.5rem;
+  border-radius: 4px;
+}
+
+.memo-date {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.prescription-hero {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.1rem;
+  border: 1px solid var(--border-subtle);
+}
+
+.hero-tank-count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid var(--border-subtle);
+  padding-right: 1.25rem;
+  min-width: 80px;
+}
+
+.hero-num {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--accent-amber-light);
+  line-height: 1;
+}
+
+.hero-lbl {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+  text-align: center;
+}
+
+.hero-water-volume {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.hero-subnum {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent-emerald-light);
+}
+
+.hero-sublbl {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.tank-measure-box {
+  background: rgba(45, 106, 79, 0.25);
+  border-left: 3px solid var(--accent-leaf);
+  padding: 0.75rem 0.95rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.measure-heading {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: block;
+}
+
+.measure-value-highlight {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.measure-value-highlight b {
+  font-size: 1.35rem;
+  color: #fff;
+  font-family: var(--font-display);
+}
+
+.measure-visual-sub {
+  font-size: 0.82rem;
+  color: var(--harvest-gold);
+  font-weight: 600;
+}
+
+.emulsifier-note {
+  font-size: 0.75rem;
+  color: #cad5c7;
+  margin-top: 0.35rem;
+}
+
+.total-input-summary {
+  background: rgba(10, 18, 14, 0.55);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  border: 1px solid var(--border-subtle);
+}
+
+.sum-row {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-secondary);
+}
+
+.sum-row b {
+  color: var(--text-primary);
+}
+
+.mixing-instructions-box {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.mix-title {
+  font-weight: 700;
+  color: #f4f1ea;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.mix-text {
+  margin: 0;
+}
+
+.spray-timing-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.76rem;
+  background: rgba(10, 18, 14, 0.45);
+  padding: 0.6rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.timing-row {
+  display: flex;
+  gap: 0.45rem;
+  color: var(--text-secondary);
+}
+
+.timing-row.safety {
+  color: #e5a93c;
+}
+
+.memo-actions-row {
+  display: flex;
+  gap: 0.65rem;
+  margin-top: 0.35rem;
+}
+
+.memo-actions-row button {
+  flex: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 880px) {
+  .knapsack-grid {
+    grid-template-columns: 1fr;
+  }
+  .modal-backdrop-overlay {
+    padding: 0.75rem;
+  }
+  .knapsack-modal-card {
+    padding: 1.25rem 1.4rem;
+    max-height: 94vh;
+  }
+}

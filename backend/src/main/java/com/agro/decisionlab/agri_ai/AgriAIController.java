@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/agri-ai")
+@RequestMapping({"/api/agri-ai", "/api/ai"})
 @CrossOrigin("*")
 public class AgriAIController {
 
@@ -16,17 +16,23 @@ public class AgriAIController {
     }
 
     @PostMapping("/ask")
-    public Map<String,String> ask(
-            @RequestBody Map<String,String> req){
+    public Map<String,String> ask(@RequestBody Map<String,String> req){
+        String question = req.get("message");
+        if(question == null || question.isBlank()) {
+            question = req.get("prompt");
+        }
+        if(question == null || question.isBlank()) {
+            question = req.get("question");
+        }
+        if(question == null || question.isBlank()) {
+            question = "What are the best agricultural management practices for current Tamil Nadu cropping?";
+        }
 
-        String question =
-                req.get("message");
-
-        String answer =
-                ai.askAI(question);
+        String answer = ai.askAI(question);
 
         return Map.of(
-                "answer",answer
+                "answer", answer,
+                "status", "SUCCESS"
         );
     }
 }

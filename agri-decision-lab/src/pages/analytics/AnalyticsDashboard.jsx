@@ -1,5 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import {
   ResponsiveContainer,
   BarChart,
@@ -17,9 +16,6 @@ import {
 import "./analytics.css";
 
 export default function AnalyticsDashboard() {
-  const { state } = useLocation();
-  const navigate = useNavigate();
-
   const [tab, setTab] = useState("mandi-trends");
   const [selectedCrop, setSelectedCrop] = useState("Rice (Paddy)");
 
@@ -142,26 +138,26 @@ export default function AnalyticsDashboard() {
                 <AreaChart data={mandiPriceHistory}>
                   <defs>
                     <linearGradient id="colorCrop" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#10b981" stopOpacity={0.4} />
-                      <stop offset="95%" stopColor="#10b981" stopOpacity={0.0} />
+                      <stop offset="5%" stopColor="#40916c" stopOpacity={0.4} />
+                      <stop offset="95%" stopColor="#40916c" stopOpacity={0.0} />
                     </linearGradient>
                   </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
-                  <XAxis dataKey="year" stroke="#94a3b8" />
-                  <YAxis stroke="#94a3b8" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(244, 241, 234, 0.07)" />
+                  <XAxis dataKey="year" stroke="#859882" tick={{ fill: "#cad5c7", fontSize: 12 }} />
+                  <YAxis stroke="#859882" tick={{ fill: "#cad5c7", fontSize: 12 }} />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: "#0d1726",
-                      border: "1px solid rgba(16,185,129,0.3)",
-                      borderRadius: 10,
-                      color: "#fff",
+                      backgroundColor: "var(--bg-surface)",
+                      border: "1px solid var(--border-medium)",
+                      borderRadius: 8,
+                      color: "var(--text-primary)",
                     }}
                   />
-                  <Legend />
+                  <Legend wrapperStyle={{ color: "#cad5c7" }} />
                   <Area
                     type="monotone"
                     dataKey={selectedCrop.split(" ")[0]}
-                    stroke="#10b981"
+                    stroke="#40916c"
                     strokeWidth={3}
                     fillOpacity={1}
                     fill="url(#colorCrop)"
@@ -170,8 +166,8 @@ export default function AnalyticsDashboard() {
               </ResponsiveContainer>
             </div>
 
-            <div className="ai-insight-box">
-              💡 <b>AI Price Forecast:</b> {selectedCrop} prices in South Indian mandis show strong sustained demand with an estimated <b>+7.2% CAGR</b> through 2026.
+            <div className="advisory-pill" style={{ marginTop: "1rem" }}>
+              🌾 <b>Mandi Market Outlook:</b> {selectedCrop} prices across Tamil Nadu APMC mandis demonstrate firm seasonal demand with an estimated <b>+7.2% CAGR</b> through 2026.
             </div>
           </div>
         )}
@@ -179,32 +175,32 @@ export default function AnalyticsDashboard() {
         {tab === "volatility" && (
           <div className="tab-content fade-in">
             <div className="chart-header-row">
-              <h3>⚡ Crop Price Volatility vs Storage Stability</h3>
+              <h3>🌾 Crop Price Volatility vs Storage Stability</h3>
             </div>
 
             <div style={{ height: 340, width: "100%", marginTop: "1rem" }}>
               <ResponsiveContainer>
                 <BarChart data={volatilityData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
-                  <XAxis dataKey="crop" stroke="#94a3b8" />
-                  <YAxis stroke="#94a3b8" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(244, 241, 234, 0.07)" />
+                  <XAxis dataKey="crop" stroke="#859882" tick={{ fill: "#cad5c7", fontSize: 12 }} />
+                  <YAxis stroke="#859882" tick={{ fill: "#cad5c7", fontSize: 12 }} />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: "#0d1726",
-                      border: "1px solid rgba(16,185,129,0.3)",
-                      borderRadius: 10,
-                      color: "#fff",
+                      backgroundColor: "var(--bg-surface)",
+                      border: "1px solid var(--border-medium)",
+                      borderRadius: 8,
+                      color: "var(--text-primary)",
                     }}
                   />
-                  <Legend />
-                  <Bar dataKey="volatility" name="Price Volatility Index (%)" fill="#f43f5e" radius={[6, 6, 0, 0]} />
-                  <Bar dataKey="storageLifeMonths" name="Safe Storage Life (Months)" fill="#06b6d4" radius={[6, 6, 0, 0]} />
+                  <Legend wrapperStyle={{ color: "#cad5c7" }} />
+                  <Bar dataKey="volatility" name="Price Volatility Index (%)" fill="#c86446" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="storageLifeMonths" name="Safe Storage Life (Months)" fill="#4a7c8c" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
 
-            <div className="ai-insight-box">
-              🛡️ <b>Risk Mitigation:</b> Highly perishable crops like <b>Tomato (48% Volatility)</b> benefit from fast cold-chain dispatch, while <b>Grains (Rice/Wheat)</b> allow timed mandi sell-offs during peak off-season pricing.
+            <div className="advisory-pill" style={{ marginTop: "1rem" }}>
+              🌾 <b>Risk Management:</b> Highly perishable produce like <b>Tomato (48% Volatility)</b> mandates timely cold-chain transit to mandis, whereas stable foodgrains (<b>Rice & Wheat</b>) permit staggered inventory release.
             </div>
           </div>
         )}

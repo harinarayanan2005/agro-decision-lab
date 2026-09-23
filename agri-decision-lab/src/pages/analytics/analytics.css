@@ -1,35 +1,38 @@
-/* Modern Market Analytics Styles */
+/* =========================================================
+   ORGANIC AGRO DECISIONLAB — MARKET ANALYTICS STYLING
+   ========================================================= */
 
 .analytics-root {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.4rem;
 }
 
 /* KPI Top Grid */
 .analytics-kpi-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
+  gap: 1.2rem;
 }
 
 .kpi-stat-card {
-  padding: 1.25rem 1.5rem;
+  padding: 1.25rem 1.4rem;
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.15rem;
 }
 
 .kpi-icon-box {
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   border-radius: var(--radius-md);
-  background: rgba(16, 185, 129, 0.15);
+  background: rgba(45, 106, 79, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   flex-shrink: 0;
+  border: 1px solid rgba(82, 183, 136, 0.3);
 }
 
 .kpi-text-block {
@@ -38,7 +41,7 @@
 }
 
 .stat-label {
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   color: var(--text-muted);
   font-weight: 600;
   text-transform: uppercase;
@@ -47,7 +50,7 @@
 
 .stat-number {
   font-size: 1.45rem;
-  font-weight: 800;
+  font-weight: 700;
   font-family: var(--font-display);
   color: var(--text-primary);
   display: flex;
@@ -56,44 +59,44 @@
 }
 
 .stat-subtext {
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   color: var(--text-secondary);
 }
 
 /* Tabs Bar */
 .analytics-tabs-bar {
   display: flex;
-  gap: 0.65rem;
+  gap: 0.55rem;
   flex-wrap: wrap;
 }
 
 .tab-chip {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(244, 241, 234, 0.04);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
   font-family: var(--font-main);
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  padding: 0.55rem 1.15rem;
+  padding: 0.45rem 1.05rem;
   border-radius: var(--radius-full);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .tab-chip:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(244, 241, 234, 0.08);
   color: var(--text-primary);
 }
 
 .tab-chip.active {
-  background: rgba(16, 185, 129, 0.2);
-  color: var(--accent-emerald-light);
+  background: rgba(45, 106, 79, 0.28);
+  color: var(--text-primary);
   border-color: var(--border-focus);
 }
 
 /* Main Card */
 .analytics-main-card {
-  padding: 1.75rem;
+  padding: 1.6rem;
 }
 
 .chart-header-row {
@@ -106,7 +109,7 @@
 
 .chart-header-row h3 {
   font-size: 1.15rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-primary);
 }
 
@@ -117,52 +120,84 @@
 }
 
 .filter-btn {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(244, 241, 234, 0.04);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
   font-size: 0.8rem;
   font-weight: 600;
-  padding: 0.3rem 0.75rem;
+  padding: 0.28rem 0.7rem;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .filter-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(244, 241, 234, 0.08);
+  color: var(--text-primary);
 }
 
 .filter-btn.active {
-  background: var(--accent-emerald);
-  color: white;
-  border-color: var(--accent-emerald);
+  background: var(--accent-forest);
+  color: var(--text-primary);
+  border-color: rgba(82, 183, 136, 0.4);
 }
 
-.ai-insight-box {
-  margin-top: 1.25rem;
-  padding: 0.85rem 1.1rem;
-  background: rgba(16, 185, 129, 0.08);
-  border-left: 3px solid var(--accent-emerald);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  font-size: 0.88rem;
-  color: #cbd5e1;
+.district-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
-.trend-tag {
+.district-price-card {
+  padding: 1.1rem;
+  background: rgba(244, 241, 234, 0.025);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.district-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.district-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.district-trend {
   font-size: 0.75rem;
   font-weight: 700;
-  padding: 0.15rem 0.5rem;
+  padding: 0.15rem 0.45rem;
   border-radius: 4px;
 }
 
 .trend-up {
-  background: rgba(16, 185, 129, 0.2);
+  background: rgba(45, 106, 79, 0.3);
   color: var(--accent-emerald-light);
 }
 
 .trend-down {
-  background: rgba(244, 63, 94, 0.2);
-  color: #fda4af;
+  background: rgba(200, 100, 70, 0.25);
+  color: #f7b4a1;
+}
+
+.district-price {
+  font-size: 1.45rem;
+  font-weight: 700;
+  font-family: var(--font-display);
+  color: var(--text-gold);
+}
+
+.district-arrivals {
+  font-size: 0.78rem;
+  color: var(--text-muted);
 }
 
 @media (max-width: 1024px) {

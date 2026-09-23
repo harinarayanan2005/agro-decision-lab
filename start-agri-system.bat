@@ -25,11 +25,11 @@ if not exist "%BACKEND_DIR%\venv" (
 
 echo.
 echo [2/4] Launching Spring Boot AI Backend Server (Port 8081)...
-start "AgriAI Backend Server" cmd /k "cd /d ""%BACKEND_DIR%"" && call venv\Scripts\activate.bat && mvnw.cmd spring-boot:run"
+start "AgriAI Backend Server" /D "%BACKEND_DIR%" cmd /k "call venv\Scripts\activate.bat && mvnw.cmd spring-boot:run"
 
 echo.
 echo [3/4] Launching React + Vite Frontend Dashboard (Port 5173)...
-start "AgriAI Frontend Dashboard" cmd /k "cd /d ""%FRONTEND_DIR%"" && npm.cmd run dev"
+start "AgriAI Frontend Dashboard" /D "%FRONTEND_DIR%" cmd /k "npm.cmd run dev"
 
 echo.
 echo [4/4] Opening Web Interface in Default Browser...

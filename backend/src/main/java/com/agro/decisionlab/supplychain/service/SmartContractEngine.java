@@ -1,6 +1,8 @@
 package com.agro.decisionlab.supplychain.service;
 
-import com.agro.decisionlab.supplychain.model.*;
+import com.agro.decisionlab.supplychain.model.BatchChain;
+import com.agro.decisionlab.supplychain.model.Block;
+import com.agro.decisionlab.supplychain.model.SupplyEvent;
 
 public class SmartContractEngine {
 

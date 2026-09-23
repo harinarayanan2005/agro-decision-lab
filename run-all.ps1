@@ -18,10 +18,10 @@ if (-not (Test-Path "$BackendDir\venv")) {
 }
 
 Write-Host "`n[2/4] Starting Spring Boot Backend (Port 8081)..." -ForegroundColor Cyan
-Start-Process cmd.exe -ArgumentList "/k", "cd /d `"$BackendDir`" && call venv\Scripts\activate.bat && mvnw.cmd spring-boot:run"
+Start-Process cmd.exe -WorkingDirectory $BackendDir -ArgumentList "/k", "call `"$BackendDir\venv\Scripts\activate.bat`" && mvnw.cmd spring-boot:run"
 
 Write-Host "`n[3/4] Starting Frontend Dev Server (Port 5173)..." -ForegroundColor Cyan
-Start-Process cmd.exe -ArgumentList "/k", "cd /d `"$FrontendDir`" && npm.cmd run dev"
+Start-Process cmd.exe -WorkingDirectory $FrontendDir -ArgumentList "/k", "npm.cmd run dev"
 
 Write-Host "`n[4/4] Launching Browser..." -ForegroundColor Cyan
 Start-Sleep -Seconds 5

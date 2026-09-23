@@ -1,0 +1,901 @@
+/* =========================================================
+   ORGANIC AGRO DECISIONLAB — TAMIL NADU REALISTIC GIS MAP & LIVE METEO
+   ========================================================= */
+
+.gis-root {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.gis-main-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 1.4rem;
+  align-items: start;
+}
+
+@media (max-width: 1100px) {
+  .gis-main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.map-card-panel,
+.telemetry-card-panel {
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* =========================================================
+   GIS MAP TOOLBAR & CONTROLS
+   ========================================================= */
+
+.map-toolbar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  background: var(--bg-surface);
+  padding: 0.6rem 0.9rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.map-layer-toggles {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.toolbar-label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-right: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tile-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.32rem 0.7rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.tile-btn:hover {
+  background: rgba(45, 106, 79, 0.4);
+  color: var(--text-primary);
+  border-color: var(--forest-light);
+}
+
+.tile-btn.active {
+  background: var(--forest-mid);
+  color: #fff;
+  border-color: var(--forest-light);
+  box-shadow: 0 2px 8px rgba(45, 106, 79, 0.4);
+}
+
+.map-actions-right {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.toggle-checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-checkbox-label input[type="checkbox"] {
+  accent-color: var(--forest-light);
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+}
+
+.btn-sm {
+  padding: 0.32rem 0.7rem;
+  font-size: 0.78rem;
+}
+
+/* Secondary Toolbar: Temperature Metric Switcher */
+.temp-metric-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  background: rgba(18, 32, 25, 0.6);
+  padding: 0.5rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid rgba(82, 183, 136, 0.2);
+}
+
+.metric-switch-group {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.metric-btn {
+  background: rgba(25, 42, 33, 0.7);
+  border: 1px solid rgba(244, 241, 234, 0.12);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.28rem 0.65rem;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.metric-btn:hover {
+  background: rgba(45, 106, 79, 0.4);
+  color: #fff;
+  border-color: rgba(82, 183, 136, 0.4);
+}
+
+.metric-btn.active {
+  background: rgba(212, 151, 59, 0.22);
+  border-color: var(--harvest-gold);
+  color: var(--harvest-gold);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(212, 151, 59, 0.25);
+}
+
+.live-station-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  background: rgba(10, 18, 14, 0.5);
+  padding: 0.25rem 0.65rem;
+  border-radius: 14px;
+  border: 1px solid rgba(82, 183, 136, 0.2);
+}
+
+.status-pulse.green {
+  background: #52b788;
+  box-shadow: 0 0 6px #52b788;
+}
+
+.spinning {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* =========================================================
+   REALISTIC LEAFLET GIS MAP CONTAINER
+   ========================================================= */
+
+.gis-map-viewport {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+  background: #0c1511;
+}
+
+.gis-leaflet-canvas {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.map-overlay-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 999;
+  background: var(--bg-surface);
+  backdrop-filter: blur(8px);
+  padding: 0.45rem 0.85rem;
+  border-radius: 20px;
+  border: 1px solid var(--border-medium);
+  color: var(--text-gold);
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* =========================================================
+   CUSTOM LEAFLET MARKER PILLS WITH LIVE TEMPERATURE
+   ========================================================= */
+
+.gis-custom-marker-wrapper {
+  background: transparent !important;
+  border: none !important;
+}
+
+.gis-marker-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--bg-surface);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border-medium);
+  padding: 0.25rem 0.55rem;
+  border-radius: 16px;
+  color: var(--text-primary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.gis-marker-pill:hover {
+  transform: translateY(-2px) scale(1.08);
+  border-color: var(--harvest-gold);
+  background: rgba(22, 40, 31, 0.98);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.75);
+}
+
+.gis-marker-pill.selected-marker {
+  background: #1e3528;
+  border: 2px solid var(--harvest-gold);
+  box-shadow: 0 0 16px rgba(212, 151, 59, 0.55), 0 4px 12px rgba(0, 0, 0, 0.8);
+  transform: translateY(-3px) scale(1.12);
+  z-index: 1000 !important;
+}
+
+.marker-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #52b788;
+  display: inline-block;
+  box-shadow: 0 0 6px #52b788;
+}
+
+.selected-marker .marker-pulse-dot {
+  background: var(--harvest-gold);
+  box-shadow: 0 0 8px var(--harvest-gold);
+  animation: pulseDot 1.4s infinite;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  50% { transform: scale(1.4); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.8; }
+}
+
+.marker-name {
+  color: #f4f1ea;
+  font-size: 0.78rem;
+}
+
+.marker-temp-badge {
+  background: rgba(212, 151, 59, 0.2);
+  color: var(--harvest-gold);
+  padding: 0.1rem 0.35rem;
+  border-radius: 8px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  border: 1px solid rgba(212, 151, 59, 0.35);
+}
+
+.marker-temp-badge.feels-badge {
+  background: rgba(230, 111, 81, 0.2);
+  color: #f4a261;
+  border-color: rgba(230, 111, 81, 0.4);
+}
+
+.selected-marker .marker-temp-badge {
+  background: var(--harvest-gold);
+  color: #0c1511;
+  border-color: var(--harvest-gold);
+}
+
+/* =========================================================
+   CUSTOM LEAFLET POPUP STYLES
+   ========================================================= */
+
+.agro-leaflet-popup-container .leaflet-popup-content-wrapper {
+  background: rgba(18, 32, 25, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(82, 183, 136, 0.4) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.75) !important;
+  color: var(--text-primary) !important;
+  padding: 0 !important;
+}
+
+.agro-leaflet-popup-container .leaflet-popup-tip {
+  background: rgba(18, 32, 25, 0.95) !important;
+  border: 1px solid rgba(82, 183, 136, 0.4) !important;
+}
+
+.agro-leaflet-popup-container .leaflet-popup-content {
+  margin: 0 !important;
+  padding: 0.85rem 1rem !important;
+  line-height: 1.4 !important;
+}
+
+.agro-leaflet-popup-container .leaflet-popup-close-button {
+  color: var(--text-muted) !important;
+  padding: 6px !important;
+}
+
+.agro-leaflet-popup-container .leaflet-popup-close-button:hover {
+  color: var(--harvest-gold) !important;
+}
+
+.gis-leaflet-popup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 200px;
+}
+
+.gis-leaflet-popup .popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.4rem;
+}
+
+.gis-leaflet-popup h4 {
+  font-family: var(--font-serif);
+  font-size: 0.98rem;
+  margin: 0;
+  color: #f4f1ea;
+}
+
+.gis-leaflet-popup .popup-tamil {
+  font-family: var(--font-main);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: normal;
+}
+
+.gis-leaflet-popup .popup-temp-pill {
+  background: var(--forest-mid);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 10px;
+  border: 1px solid var(--forest-light);
+}
+
+.gis-leaflet-popup .popup-body {
+  font-size: 0.78rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  color: var(--text-secondary);
+}
+
+.gis-leaflet-popup .popup-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.gis-leaflet-popup .popup-row b {
+  color: var(--text-primary);
+}
+
+/* Tooltip for Agro-Climatic Zones */
+.agro-leaflet-tooltip {
+  background: rgba(14, 24, 19, 0.92) !important;
+  border: 1px solid var(--forest-light) !important;
+  color: #f4f1ea !important;
+  border-radius: 8px !important;
+  padding: 0.4rem 0.7rem !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+  font-size: 0.78rem !important;
+}
+
+/* =========================================================
+   ZONE LEGEND CHIPS & DISTRICT QUICK STRIP
+   ========================================================= */
+
+.zone-legend-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.zone-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(30, 48, 39, 0.4);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  padding: 0.32rem 0.65rem;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.zone-chip:hover {
+  background: rgba(45, 106, 79, 0.35);
+  color: var(--text-primary);
+  border-color: var(--forest-light);
+}
+
+.zone-chip.selected-zone {
+  background: rgba(45, 106, 79, 0.5);
+  border-color: var(--forest-light);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(45, 106, 79, 0.35);
+}
+
+.zone-color-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* District Quick Strip */
+.district-quick-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.strip-title {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.district-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  max-height: 90px;
+  overflow-y: auto;
+  padding-right: 0.3rem;
+}
+
+.district-pill-btn {
+  background: rgba(22, 36, 29, 0.6);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  padding: 0.22rem 0.55rem;
+  border-radius: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.18s ease;
+}
+
+.district-pill-btn:hover {
+  background: rgba(45, 106, 79, 0.35);
+  color: var(--text-primary);
+  border-color: var(--forest-light);
+}
+
+.district-pill-btn.active {
+  background: var(--forest-mid);
+  border-color: var(--harvest-gold);
+  color: #fff;
+  font-weight: 600;
+}
+
+.pill-temp {
+  color: var(--harvest-gold);
+  font-weight: 700;
+  font-size: 0.72rem;
+}
+
+/* =========================================================
+   METEOROLOGICAL ACCURACY & COMPARISON CARD
+   ========================================================= */
+
+.district-telemetry-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.district-hero-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.district-name-group {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+}
+
+.district-main-name {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.district-tamil-name {
+  font-size: 1.1rem;
+  color: var(--harvest-gold);
+  font-weight: 500;
+}
+
+.district-badges-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.zone-badge-pill {
+  background: rgba(45, 106, 79, 0.3);
+  border: 1px solid var(--forest-light);
+  color: var(--forest-light);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+}
+
+.elevation-badge-pill {
+  background: rgba(212, 151, 59, 0.15);
+  border: 1px solid rgba(212, 151, 59, 0.4);
+  color: var(--harvest-gold);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.3rem 0.65rem;
+  border-radius: 20px;
+}
+
+/* Accuracy Verified Card */
+.accuracy-verified-box {
+  background: linear-gradient(135deg, rgba(22, 38, 30, 0.9) 0%, rgba(14, 24, 19, 0.96) 100%);
+  border: 1px solid rgba(82, 183, 136, 0.35);
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+}
+
+.accuracy-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgba(244, 241, 234, 0.08);
+  padding-bottom: 0.55rem;
+}
+
+.verified-status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #74c69d;
+  letter-spacing: 0.04em;
+}
+
+.station-coord-text {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.temperature-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+  padding: 0.2rem 0;
+}
+
+@media (max-width: 600px) {
+  .temperature-comparison-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.comp-item {
+  background: rgba(12, 20, 16, 0.6);
+  border: 1px solid rgba(82, 183, 136, 0.2);
+  border-radius: 8px;
+  padding: 0.65rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.2rem;
+}
+
+.comp-item.highlight {
+  background: rgba(36, 56, 44, 0.4);
+  border-color: rgba(212, 151, 59, 0.4);
+}
+
+.comp-lbl {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.comp-val {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.comp-val.primary {
+  color: #74c69d;
+}
+
+.comp-val.gold {
+  color: var(--harvest-gold);
+}
+
+.comp-sub {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.meteo-clarity-note {
+  background: rgba(45, 106, 79, 0.18);
+  border-left: 3px solid var(--harvest-gold);
+  padding: 0.55rem 0.8rem;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: #dbe4d8;
+}
+
+/* Four-Grid Submetrics */
+.weather-submetrics-four-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.7rem;
+}
+
+.submetric-quad-card {
+  background: rgba(22, 38, 30, 0.55);
+  border: 1px solid rgba(82, 183, 136, 0.25);
+  border-radius: 8px;
+  padding: 0.65rem 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.quad-icon {
+  font-size: 1.35rem;
+}
+
+.quad-lbl {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.quad-val {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #c7e2d1;
+}
+
+.weather-advisory-box {
+  background: rgba(45, 106, 79, 0.2);
+  border-left: 3px solid var(--forest-light);
+  padding: 0.65rem 0.85rem;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: #e5ede3;
+}
+
+/* =========================================================
+   HOURLY TREND & 5-DAY AGRO FORECAST
+   ========================================================= */
+
+.hourly-forecast-box {
+  background: rgba(16, 28, 22, 0.65);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+}
+
+.forecast-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.forecast-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.forecast-legend {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+}
+
+.forecast-legend .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.dot-air {
+  background: #d4973b;
+}
+
+.dot-soil {
+  background: #52b788;
+}
+
+/* 5-Day Forecast Strip */
+.daily-forecast-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.daily-cards-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.45rem;
+}
+
+.daily-card {
+  background: rgba(18, 32, 25, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 0.55rem 0.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.daily-card:hover {
+  background: rgba(30, 52, 40, 0.6);
+  border-color: rgba(82, 183, 136, 0.4);
+}
+
+.daily-name {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.daily-icon {
+  font-size: 1.3rem;
+}
+
+.daily-temps {
+  font-size: 0.76rem;
+  color: var(--text-primary);
+}
+
+.daily-temps b {
+  color: var(--harvest-gold);
+}
+
+.daily-rain {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+/* =========================================================
+   SOIL PROFILE GRID & CROPS ROW
+   ========================================================= */
+
+.soil-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.7rem;
+}
+
+.soil-info-box {
+  background: rgba(18, 30, 24, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 0.7rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.soil-info-lbl {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.soil-info-val {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.soil-info-val.highlight {
+  color: var(--forest-light);
+}
+
+.crop-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.25rem;
+}
+
+.crop-tag-chip {
+  background: rgba(45, 106, 79, 0.25);
+  border: 1px solid rgba(82, 183, 136, 0.3);
+  color: #e5ede3;
+  font-size: 0.78rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 12px;
+}
